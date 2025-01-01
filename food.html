@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>杭州</title>
+    <style>
+        /* 设置背景样式 */
+        body {
+            margin: 0; /* 移除默认的边距 */
+            padding: 0; /* 移除默认的内边距 */
+            background-image: url('./res/fb.jpg'); /* 设置背景图片 */
+            background-size: cover; /* 背景图片覆盖整个页面 */
+            background-position: center; /* 背景图片居中显示 */
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+        /* 设置图片样式 */
+		@font-face {
+		    font-family: 'MaoBiFont';
+		    src: url('MaoBiFont.otf') format('opentype'); /* 引入毛笔字体 */
+		}
+        img {
+            max-width: 200px; /* 设置图片最大宽度 */
+            max-height: 150px; /* 设置图片最大高度 */
+            width: auto; /* 保持图片宽高比 */
+            height: auto; /* 保持图片宽高比 */
+        }
+        /* 设置标题和段落文字加大加粗 */
+        #food_title h3 {
+            font-size: 24px; /* 加大字体大小 */
+            font-weight: bold; /* 加粗字体 */
+			font-family: 'MaoBiFont', sans-serif;
+        }
+        #food_title p {
+            font-size: 18px; /* 加大字体大小 */
+            font-weight: bold; /* 加粗字体 */
+			font-family: 'MaoBiFont', sans-serif;
+        }
+        /* 设置导航栏样式 */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center; /* 使导航链接居中 */
+        }
+        nav ul li {
+            display: inline; /* 横向排列 */
+            margin: 0 10px; /* 导航项之间的间距 */
+        }
+        nav ul li a {
+            text-decoration: none; /* 去除下划线 */
+            color: #5e7d88;
+            padding: 10px; /* 链接周围的填充 */
+			 font-family: 'MaoBiFont', sans-serif;
+        }
+        nav ul li a:hover {
+            background-color: #eee; /* 鼠标悬停时的背景颜色 */
+        }
+        /* 设置内容区域样式 */
+        #banner {
+            text-align: center; /* 使横幅居中 */
+            margin-top: 60px;
+        }
+        .city {
+            max-width: 1200px; /* 内容的最大宽度 */
+            margin: 0 auto; /* 水平居中 */
+            padding: 20px; /* 内容周围的填充 */
+            text-align: center; /* 使内容居中 */
+			font-family: 'MaoBiFont', sans-serif;
+        }
+        .city ul {
+            display: flex;
+            flex-wrap: wrap; /* 允许内容换行 */
+            justify-content: space-around; /* 平均分布内容 */
+        }
+        .city ul li {
+            flex-basis: calc(25% - 20px); /* 每个项目占据25%的宽度，减去间距 */
+            margin-bottom: 20px; /* 项目之间的垂直间距 */
+            text-align: center; /* 文本居中 */
+        }
+        .city ul li img {
+            display: block; /* 让图片独占一行 */
+            margin: 0 auto; /* 居中显示 */
+        }
+        .city ul li .food-info {
+            text-align: center; /* 文本居中 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+   <nav>
+       <ul>
+           <li><a href="./city.html">城市简介</a></li>
+           <li><a href="./food.html">特色美食</a></li>
+   		<li><a href="./index.html">风景名胜</a></li>
+   		<li><a href="./history.html">历史文化</a></li>
+   		<li><a href="./liuyan.html">留言</a></li>
+       </ul>
+   </nav>
+    <!-- 中间内容区域 -->
+    <main>
+        <div id="banner">
+            <img src="./images/banner6.png" alt="">
+        </div>
+        <div class="city">
+            <h1 class="city_h1">特色美食</h1>
+            <ul>
+                <li>
+                    <img src="./res/food1.png" alt="" class="float-left">
+                    <div class="food-info">
+                        <div id="food_title">
+                            <h3>西湖醋鱼</h3>
+                            <p>“西湖醋鱼（West Lake Fish in Vinegar Gravy），又名“叔嫂传珍”“宋嫂鱼”，前身为“宋嫂鱼羹”，是中国浙江省杭州市传统风味名菜，为浙江菜系。西湖醋鱼主以草鱼等食材用料烹制，色泽红亮，肉质鲜嫩，酸甜清香，口感软嫩，带有蟹味。2018年9月10日，西湖醋鱼被评为浙江省十大经典名菜之一。</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./res/food2.png" alt="" class="float-left">
+                    <div class="food-info">
+                        <div id="food_title">
+                            <h3>龙井虾仁</h3>
+                            <p>相传，乾隆皇帝微服私访，在杭州茶农家喝到一杯龙井新茶，深感清香可口，趁人不备，暗抓了些茶叶离去，后来在市内餐馆用膳，叫店伙计用此泡茶。店伙计看到乾隆内着的龙袍外露一角，急忙告诉店主。店主正值烹调虾仁，惊慌中竟把店伙计手中的茶叶当作葱末撒到锅内。想不到这道茶叶虾仁色泽雅丽， 滋味独特，吃得乾隆点头称好。此后，这道菜肴便成了杭州名菜而流传至今。</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./res/food4.png" alt="" class="float-left">
+                    <div class="food-info">
+                        <div id="food_title">
+                            <h3>片儿川面</h3>
+                            <p>相传清时某年浙江举行乡试到杭州来赶考的读书人很多，各地考生齐集杭城，店主为招徕这些读书人的生意，就以倒笃菜、笋片、猪肉片烧制成的大众化面专门供应外地书生。在所售之早餐面中添加三只蛋，寓“连中三元”之意。有一书生因奎元馆面好价廉，常来吃面，后得中乡试举人第一名“解元”，放榜之日，特到店里向店主致谢，因小面店尚没有招牌，就当场题写“奎元馆”三字作为招牌。</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="./res/food3.png" alt="" class="float-left">
+                    <div class="food-info">
+                        <div id="food_title">
+                            <h3>虾爆鳝面</h3>
+                            <p>“虾爆鳝面是浙江省杭州市的一道特色名菜，属于浙菜系；该菜品在烹调时，应选用粗壮的鲜活黄鳝，斩头截尾剔骨后切成鳝片，用素油爆，荤油炒，麻油浇，直至鳝片黄脆；取鲜活大河虾洗净加蛋清上浆清炒至白嫩；精制面条下锅烧后，不粘不糊；用原汁煮面，使面条吸入鳝鱼的香味，汁浓面鲜。虾爆鳝面为奎元馆的杭式名面。</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+	<script>
+	// 原始图片数组，包含页面加载时显示的图片路径
+	var originalImages = [
+	    './res/food1.png',
+	    './res/food2.png',
+	    './res/food4.png',
+	    './res/food3.png'
+	];
+	
+	// 点击后要更换的图片数组
+	var alternateImages = [
+	    './res/food11.png',
+	    './res/food22.png',
+	    './res/food33.png',
+	    './res/food44.png'
+	];
+	
+	// 存储每个图片是否已经切换的标志
+	var isSwitched = [false, false, false, false];
+	
+	// 为每个图片添加点击事件监听器
+	document.querySelectorAll('.city ul li img').forEach(function(img, index) {
+	    img.addEventListener('click', function() {
+	        // 检查当前图片是否已经切换
+	        if (isSwitched[index]) {
+	            // 如果已经切换，则切换回原始图片
+	            img.src = originalImages[index];
+	            isSwitched[index] = false;
+	        } else {
+	            // 如果未切换，则切换到另一张图片
+	            img.src = alternateImages[index];
+	            isSwitched[index] = true;
+	        }
+	    });
+	});
+	</script>
+</body>
+</html>

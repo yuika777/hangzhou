@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.12.1/themes/base/jquery-ui.min.css">
+    <style>
+        @font-face {
+            font-family: 'MaoBiFont';
+            src: url('MaoBiFont.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* 禁用页面滚动条 */
+        }
+        body {
+            font-family: 'MaoBiFont', Arial, sans-serif; /* 使用MaoBiFont字体 */
+            background: url('res/bbj.jpg') no-repeat center center fixed; /* 设置背景图片 */
+            background-size: cover; /* 使背景图片覆盖整个页面 */
+        }
+        .container {
+            max-width: 500px;
+            margin: 200px auto; /* 将表单向下移动 */
+            background: rgba(255, 255, 255, 0.9); /* 半透明背景，以便看到背景图片 */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            font-family: 'MaoBiFont', Arial, sans-serif; /* 使用MaoBiFont字体 */
+        }
+        .submit-btn, .end-btn {
+            background-color: #32969A; /* 青灰色 */
+            color: #fff;
+            border: 2px solid #fff; /* 白色边框 */
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%; /* 圆形按钮 */
+            transition: background-color 0.3s, border-color 0.3s; /* 平滑过渡效果 */
+            font-family: 'MaoBiFont', Arial, sans-serif; /* 使用MaoBiFont字体 */
+            margin-right: 10px; /* 右侧间距，仅对end-btn生效 */
+        }
+        .submit-btn:hover, .end-btn:hover {
+            background-color: #fff; /* 鼠标悬浮时背景变为白色 */
+            color: #000; /* 鼠标悬浮时文字变为黑色 */
+            border-color: #000; /* 鼠标悬浮时边框变为黑色 */
+        }
+        .end-btn {
+            margin-left: 10px; /* 左侧间距，确保与submit-btn不紧贴 */
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center; /* 使导航链接居中 */
+        }
+        nav ul li {
+            display: inline; /* 横向排列 */
+            margin: 0 10px; /* 导航项之间的间距 */
+        }
+        nav ul li a {
+            text-decoration: none; /* 去除下划线 */
+            color: #5e7d88;
+            padding: 10px; /* 链接周围的填充 */
+            font-family: 'MaoBiFont', sans-serif;
+        }
+        nav ul li a:hover {
+            background-color: #eee; /* 鼠标悬停时的背景颜色 */
+        }
+        .ui-dialog {
+            position: fixed !important; /* 确保弹窗是固定的 */
+            top: 50% !important; /* 将弹窗向下移动 */
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important; /* 居中弹窗 */
+            z-index: 10000 !important; /* 确保弹窗在最上层 */
+            background: rgba(255, 255, 255, 0.9) !important; /* 弹窗背景颜色与表单一致 */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-family: 'MaoBiFont', Arial, sans-serif; /* 使用MaoBiFont字体 */
+        }
+        .ui-widget-overlay {
+            background: rgba(0, 0, 0, 0.5) !important; /* 设置遮罩层的背景色和透明度 */
+        }
+        .ui-button {
+            background-color: #32969A !important; /* 弹窗按钮背景颜色 */
+            color: #fff !important; /* 弹窗按钮文字颜色 */
+            border: 2px solid #fff !important; /* 弹窗按钮边框颜色 */
+            border-radius: 50% !important; /* 弹窗按钮圆形 */
+            padding: 10px 15px !important;
+            transition: background-color 0.3s, border-color 0.3s !important; /* 平滑过渡效果 */
+            font-family: 'MaoBiFont', Arial, sans-serif; /* 使用MaoBiFont字体 */
+        }
+        .ui-button:hover {
+            background-color: #fff !important; /* 鼠标悬浮时背景变为白色 */
+            color: #000 !important; /* 鼠标悬浮时文字变为黑色 */
+            border-color: #000 !important; /* 鼠标悬浮时边框变为黑色 */
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="./city.html">城市简介</a></li>
+        <li><a href="./food.html">特色美食</a></li>
+        <li><a href="./index.html">风景名胜</a></li>
+        <li><a href="./history.html">历史文化</a></li>
+        <li><a href="./liuyan.html">留言</a></li>
+    </ul>
+</nav>
+<div class="container">
+    <h2>写出你的想法吧</h2>
+    <form id="myForm">
+        <div class="form-group">
+            <label for="suggestion">建议:</label>
+            <textarea id="suggestion" name="suggestion" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">确定</button>
+        <button type="button" class="end-btn" onclick="window.location.href='./message.html'">结束</button>
+    </form>
+    <div class="success-dialog ui-dialog-content ui-widget-content" title="提交成功" style="display: none;">
+        <p>感谢您的建议！</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // 表单提交事件处理
+        $('#myForm').on('submit', function (e) {
+            e.preventDefault(); // 阻止表单默认提交行为
+
+            // 获取建议输入值
+            var suggestion = $('#suggestion').val().trim();
+            var isValid = true;
+
+            // 如果验证通过，则显示提交成功弹窗并重置表单
+            if (isValid) {
+                $('.success-dialog').dialog({
+                    resizable: false,
+                    draggable: false,
+                    modal: true,
+                    width: 300, // 设置弹窗宽度
+                    buttons: {
+                        "确定": function () {
+                            $(this).dialog("close");
+                            $('#myForm')[0].reset(); // 重置表单
+                        }
+                    },
+                    closeOnEscape: true,
+                    open: function (event, ui) {
+                        $(".ui-dialog-titlebar-close").hide(); // 隐藏关闭按钮
+                    },
+                    create: function(event, ui) {
+                        // 确保弹窗居中
+                        $(".ui-dialog").css({
+                            "top": "50%", // 将弹窗向下移动
+                            "left": "50%",
+                            "transform": "translate(-50%, -50%)"
+                        });
+                    }
+                });
+                $('.success-dialog').dialog("open"); // 打开弹窗
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

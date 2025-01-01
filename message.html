@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>杭州</title>
+    <!-- 引入css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/message.css">
+      <style>
+        /* 添加全局字体样式 */
+        body {
+             font-family: 'HanYiNanTongTi', cursive; /* 指定毛笔字体 */
+        }
+    </style>
+
+    <style>
+        /* 竖着排版的轮播文字样式 */
+        .carousel-container {
+            position: relative;
+            width: 800px; /* 设置轮播容器宽度与图片相同 */
+            height: 150px; /* 轮播容器高度 */
+            overflow: hidden;
+            margin: 0 auto; /* 水平居中 */
+        }
+
+        .carousel-content {
+            position: absolute;
+            width: 100%;
+            font-size: 36px;
+            line-height: 1.5;
+            text-align: center; /* 文字居中对齐 */
+            font-family: '楷体', KaiTi, STKaiti; /* 指定楷书字体 */
+        }
+
+        .carousel-item {
+            display: block;
+            padding: 10px;
+        }
+
+        /* 头部部分的样式 */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .logo {
+            width: 150px; /* 调整 logo 的宽度 */
+        }
+
+        #heard_right {
+            display: flex;
+            flex-direction: row; /* 修改为行布局 */
+            text-align: right;
+            font-size: 24px;
+        }
+
+        /* 设置头部布局 */
+        #heard_box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* 主要内容区域 */
+        main {
+            display: flex;
+            flex-direction: column; /* 修改为垂直布局 */
+            align-items: center;
+            padding: 20px;
+        }
+
+        .message_h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+
+        /* 图片样式 */
+        .message-image {
+            width: 800px; /* 设置图片宽度 */
+            height: auto; /* 高度自适应 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部logo -->
+    <header>
+        <div id="heard_box">
+            <img class="logo" src="./images/logo.jpeg.jpg" alt="">
+            <div id="heard_right">
+                <span>江南忆|最忆是|杭州</span> 
+            </div>
+        </div>
+    </header>
+
+    <!-- 导航栏 -->
+    <nav>
+    <ul>
+         <li><a href="./city.html">城市简介</a></li>
+         <li><a href="./food.html">特色美食</a></li>
+ 		<li><a href="./index.html">风景名胜</a></li>
+ 		<li><a href="./history.html">历史文化</a></li>
+ 		<li><a href="./liuyan.html">留言</a></li>
+     </ul>
+    </nav>
+
+    <!-- 中间内容区域 -->
+    <main>
+        <!-- 文字部分在图片上方 -->
+        <div class="carousel-container">
+            <div class="carousel-content" id="carouselContent">
+                <div class="carousel-item">欢</div>
+                <div class="carousel-item">迎</div>
+                <div class="carousel-item">大</div>
+                <div class="carousel-item">家</div>
+                <div class="carousel-item">来</div>
+                <div class="carousel-item">杭</div>
+                <div class="carousel-item">州</div>
+            </div>
+        </div>
+
+        <!-- 图片部分 -->
+        <div>
+            <img class="message-image" src="./images/message.jpg" alt="">
+        </div>
+    </main>
+
+    <footer>
+        <p>©️杭州</p>
+    </footer>
+
+  
+    <!-- 引入jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var $carouselContent =$('#carouselContent');
+            var $items =$('.carousel-item');
+            var itemHeight = $items.first().outerHeight(); // 获取每一项的高度
+
+            // 设置carousel-content的初始高度
+            $carouselContent.height(itemHeight *$items.length);
+
+            // 轮播动画
+            function startCarousel() {
+                $carouselContent.animate(
+                    { top: -itemHeight }, // 向上移动一项的高度
+                    1000, // 动画持续时间为1秒
+                    'linear', // 线性动画
+                    function () {
+                        // 移动完成后，将第一个元素移到最后
+ 
+                        $carouselContent.append($carouselContent.find('.carousel-item').first());
+                        // 重置top位置
+                        $carouselContent.css('top', 0);
+                    }
+                );
+            }
+
+            // 设置轮播定时
+            setInterval(startCarousel, 2000); // 每2秒启动一次轮播
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>城市简介</title>
+	<div id="loading-animation">
+	    <img src="res/c.png" alt="Loading...">
+	</div>
+    <style>
+        /* 设置背景样式 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        @font-face {
+            font-family: 'MaoBiFont';
+            src: url('MaoBiFont.otf') format('opentype'); /* 引入毛笔字体 */
+        }
+        /* 设置背景图片 */
+        .background {
+            background-image: url('res/cb.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100%;
+        }
+        /* 视频容器样式 */
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        /* 控制按钮样式 */
+        .control-btn {
+            margin: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
+            background-color: #E8B0B0; /* 白色背景 */
+            border: 1px solid black; /* 黑色边框 */
+            border-radius: 20px; /* 边框圆角 */
+            color: black; /* 文字颜色 */
+            font-family: 'MaoBiFont', sans-serif;
+        }
+        .control-btn:hover {
+            background-color: #eee; /* 鼠标悬停时背景颜色 */
+        }
+        /* 设置导航栏样式 */
+        nav {
+            position: absolute;
+            top: 10px; /* 将导航栏放在页面顶部 */
+            width: 100%;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #5e7d88;
+            padding: 10px;
+            font-family: 'MaoBiFont', sans-serif;
+        }
+        nav ul li a:hover {
+            background-color: #eee;
+        }
+        /* 添加标题样式 */
+        .title {
+            position: absolute;
+            top: 10%; /* 根据需要调整位置 */
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000;
+            font-size: 50px; /* 字体大小 */
+            font-weight: bold; /* 加粗 */
+            text-align: center; /* 居中显示 */
+            font-family: 'MaoBiFont', sans-serif;
+        }
+        /* 花朵飘落动画 */
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.5;
+            }
+        }
+        /* 花朵容器样式 */
+        .falling-flower {
+            position: absolute;
+            pointer-events: none; /* 确保花朵不会影响视频和其他元素的交互 */
+            opacity: 0.5; /* 半透明 */
+            animation: fall 10s linear infinite;
+        }
+        /* 确保花朵图片是居中且完整的 */
+        .falling-flower img {
+            display: block;
+            width: 150px; /* 增加花朵图片的宽度 */
+            height: auto;
+        }
+		  /* 加载动画样式 */
+		    #loading-animation {
+		        position: fixed;
+		        top: 0;
+		        left: 0;
+		        width: 100%;
+		        height: 100%;
+		        background-image: url('res/b.png'); /* 背景图片 */
+		                   background-size: cover;
+		                   background-position: center;
+		                   background-attachment: fixed;
+		                   height: 100%;
+		        display: flex;
+		        justify-content: center;
+		        align-items: center;
+		        z-index: 1000; /* 确保加载动画在最上层 */
+		    }
+		    /* 动画图片样式 */
+		    #loading-animation img {
+		        width: 50px; /* 初始宽度 */
+		        height: auto; /* 保持图片比例 */
+		        animation: moveAndFadeOut 5s ease-out forwards; /* 动画效果 */
+		    }
+			 /* 定义关键帧动画 */
+			 @keyframes moveAndFadeOut {
+			     0% {
+			         transform: translateX(-100vw) scale(10); /* 初始位置和放大两倍 */
+			         opacity: 1; /* 初始不透明 */
+			     }
+			     100% {
+			         transform: translateX(160vw) scale(20); /* 移动到右下角并放大三倍 */
+			         opacity: 1;
+			     }
+			 }
+
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="title">城市简介</div> <!-- 添加标题 -->
+    <div class="video-container">
+        <video id="hzVideo" width="100%" height="auto" controls>
+            <source src="css/hz.mp4" type="video/mp4">
+        </video>
+        <div>
+            <button class="control-btn" onclick="rewindVideo()">后退10秒</button>
+            <button class="control-btn" onclick="forwardVideo()">快进10秒</button>
+        </div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="./city.html">城市简介</a></li>
+            <li><a href="./food.html">特色美食</a></li>
+    		<li><a href="./index.html">风景名胜</a></li>
+    		<li><a href="./history.html">历史文化</a></li>
+    		<li><a href="./liuyan.html">留言</a></li>
+        </ul>
+    </nav>
+    <!-- 动态生成花朵飘落效果 -->
+    <script>
+        var video = document.getElementById('hzVideo');
+
+        function rewindVideo() {
+            if (video.currentTime > 10) {
+                video.currentTime -= 10;
+            } else {
+                video.currentTime = 0;
+            }
+        }
+
+        function forwardVideo() {
+            video.currentTime += 10;
+        }
+
+        function pauseVideo() {
+            video.pause();
+        }
+
+        // 动态生成花朵飘落效果
+        function spawnFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('falling-flower');
+            flower.innerHTML = '<img src="./res/flower.png" alt="Falling Flower">'; // 假设花朵图片名为flower.png
+            document.body.appendChild(flower);
+
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * -window.innerHeight;
+            flower.style.left = `${x}px`;
+            flower.style.animationDuration = `${10 + Math.random() * 5}s`; // 10-15秒内飘落
+            flower.style.animationDelay = `-${Math.random() * 10}s`; // 随机延迟开始动画
+        }
+
+        // 每隔一段时间生成一朵新的花朵
+        setInterval(spawnFlower, 1500); //
+		  // 动画结束后隐藏加载动画元素并显示正常界面
+		    setTimeout(function() {
+		        document.getElementById('loading-animation').style.display = 'none'; // 隐藏加载动画
+		        // 如果页面内容被隐藏，取消隐藏页面内容的代码
+		        // document.body.style.overflow = 'auto'; // 允许滚动
+		    }, 2000); // 3秒后隐藏动画元素
+    </script>
+</body>
+</html>
